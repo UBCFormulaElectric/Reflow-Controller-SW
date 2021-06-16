@@ -6,10 +6,12 @@ class Controller:
     def __init__(self):
         self.Kp = DEFAULT_Kp
         self.Ki = DEFAULT_Ki
+        self.Kd = DEFAULT_Kd
         self.T = USB_WRITE_T
         self.maxI = 15
 
         self.integralTerm = 0
+        self.derivativeTerm = 0
         self.prevError = 0
 
     def update(self, target, measurement):
@@ -20,7 +22,7 @@ class Controller:
         proportional = self.Kp * error
 
         # Integral term
-        self.integralTerm = self.integralTerm + 0.5 * self.Ki * self.T / 1000 * (error + self.prevError)
+        self.integralTerm = (self.integralTerm + error) * self.Ki
 
         # Anti-windup
         if self.integralTerm > self.maxI:
@@ -28,7 +30,9 @@ class Controller:
         elif self.integralTerm < -self.maxI:
             self.integralTerm = -self.maxI
 
-        # print("P: " + str(proportional) + ", I: " + str(self.integralTerm))
+        # Derivative
+        self.derivativeTerm = (error - self.prevError) * self.Kd
 
+        # print("P: " + str(proportional) + ", I: " + str(self.integralTerm))
         self.prevError = error
         return proportional + self.integralTerm

@@ -14,6 +14,7 @@ COOLDOWN_RATE = 10
 
 DEFAULT_Kp = 1
 DEFAULT_Ki = 0
+DEFAULT_Kd = 0
 
 COMMAND_HEAT = "Heat\n"
 COMMAND_IDLE = "Idle\n"
@@ -21,7 +22,7 @@ COMMAND_END = "End\n"
 COMMAND_CONNECTED = "Connected\n"
 COMMAND_DISCONNECTED = "Disconnected\n"
 
-OFFSET = 0
+OFFSET = 3
 
 def setDefaults(mw):
     mw.sb_soakTime.setMaximum(1000)
@@ -43,6 +44,7 @@ def setDefaults(mw):
 
     mw.sb_Kp.setValue(DEFAULT_Kp)
     mw.sb_Ki.setValue(DEFAULT_Ki)
+    mw.sb_Ki.setValue(DEFAULT_Kd)
 
 
 

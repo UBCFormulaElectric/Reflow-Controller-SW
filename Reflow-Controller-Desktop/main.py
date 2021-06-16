@@ -315,6 +315,7 @@ class MainWindow(qtw.QMainWindow):
 
         self.control.Kp = self.sb_Kp.value()
         self.control.Ki = self.sb_Ki.value()
+        self.control.Kd = self.sb_Kd.value()
 
     # ----------------- Initialization Functions -----------------#
 
@@ -329,6 +330,7 @@ class MainWindow(qtw.QMainWindow):
 
         self.sb_Kp.valueChanged.connect(self.callback_updateControllerConstants)
         self.sb_Ki.valueChanged.connect(self.callback_updateControllerConstants)
+        self.sb_Kd.valueChanged.connect(self.callback_updateControllerConstants)
 
     # ----------- GUI Element Creation Functions -----------------#
     # These functions only create the actual GUI elements using PyQt5.
@@ -362,8 +364,8 @@ class MainWindow(qtw.QMainWindow):
         return container
 
     def GUI_createPiControlSettings(self):
-        piForm, [self.sb_Kp, self.sb_Ki] = \
-            self.GUI_createFormBox("PI Controller Constants", ["K proportional", "K integral"])
+        piForm, [self.sb_Kp, self.sb_Ki, self.sb_Kd] = \
+            self.GUI_createFormBox("PI Controller Constants", ["K proportional", "K integral", "K derivative"])
 
         layout = qtw.QVBoxLayout()
         layout.addWidget(piForm)
