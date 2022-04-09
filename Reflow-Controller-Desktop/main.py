@@ -86,6 +86,8 @@ class MainWindow(qtw.QMainWindow):
             return
 
         readSuccessful, inputData = self.ser_Read()
+        print(inputData)
+
         if not readSuccessful:
             return
 
