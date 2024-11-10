@@ -1,0 +1,6 @@
+# cmake stuff
+build-fw-debug
+build-fw-release
+
+# stm stuff
+.mxproject
