@@ -4,3 +4,6 @@ build-fw-release
 
 # stm stuff
 .mxproject
+
+# idea
+.idea
