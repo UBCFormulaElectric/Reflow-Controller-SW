@@ -212,7 +212,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, STATUS_B_Pin|STATUS_G_Pin|STATUS_R_Pin|SSR_CLOSED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, USB_DM_Pin|USB_DP_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, BUZZ_Pin|CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : STATUS_B_Pin STATUS_G_Pin STATUS_R_Pin SSR_CLOSED_Pin */
   GPIO_InitStruct.Pin = STATUS_B_Pin|STATUS_G_Pin|STATUS_R_Pin|SSR_CLOSED_Pin;
@@ -221,8 +221,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : USB_DM_Pin USB_DP_Pin */
-  GPIO_InitStruct.Pin = USB_DM_Pin|USB_DP_Pin;
+  /*Configure GPIO pins : BUZZ_Pin CS_Pin */
+  GPIO_InitStruct.Pin = BUZZ_Pin|CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

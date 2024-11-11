@@ -66,10 +66,10 @@ void Error_Handler(void);
 #define STATUS_R_GPIO_Port GPIOA
 #define SSR_CLOSED_Pin GPIO_PIN_3
 #define SSR_CLOSED_GPIO_Port GPIOA
-#define USB_DM_Pin GPIO_PIN_11
-#define USB_DM_GPIO_Port GPIOB
-#define USB_DP_Pin GPIO_PIN_12
-#define USB_DP_GPIO_Port GPIOB
+#define BUZZ_Pin GPIO_PIN_11
+#define BUZZ_GPIO_Port GPIOB
+#define CS_Pin GPIO_PIN_12
+#define CS_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

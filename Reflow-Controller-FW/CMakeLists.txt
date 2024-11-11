@@ -14,7 +14,11 @@ project(${CMAKE_PROJECT_NAME} C CXX ASM)
 
 # setup stm32cubemx library
 add_subdirectory(cmake/stm32cubemx)
-target_compile_options(stm32cubemx INTERFACE -w)
+get_target_property(LIB_STM32_SRCS stm32cubemx INTERFACE_SOURCES)
+set_source_files_properties(
+        ${LIB_STM32_SRCS}
+        PROPERTIES COMPILE_FLAGS "-Wno-unused-parameter"
+)
 
 # output target
 message("📦 Adding executable ${CMAKE_PROJECT_NAME}")
@@ -30,6 +34,6 @@ file(GLOB_RECURSE reflow_srcs "src/*.c")
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${reflow_srcs})
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE src)
-target_link_libraries(${CMAKE_PROJECT_NAME}
+target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC
     stm32cubemx
 )
