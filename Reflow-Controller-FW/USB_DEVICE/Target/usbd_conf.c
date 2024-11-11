@@ -7,13 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2024 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -70,11 +69,21 @@ extern void SystemClock_Config(void);
 void HAL_PCD_MspInit(PCD_HandleTypeDef* pcdHandle)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
   if(pcdHandle->Instance==USB)
   {
   /* USER CODE BEGIN USB_MspInit 0 */
 
   /* USER CODE END USB_MspInit 0 */
+
+  /** Initializes the peripherals clock
+  */
+    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
+    PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_MSI;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+    {
+      Error_Handler();
+    }
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
     /**USB GPIO Configuration
@@ -758,10 +767,10 @@ USBD_StatusTypeDef USBD_LL_PrepareReceive(USBD_HandleTypeDef *pdev, uint8_t ep_a
 }
 
 /**
-  * @brief  Returns the last transfered packet size.
+  * @brief  Returns the last transferred packet size.
   * @param  pdev: Device handle
   * @param  ep_addr: Endpoint number
-  * @retval Recived Data Size
+  * @retval Received Data Size
   */
 uint32_t USBD_LL_GetRxDataSize(USBD_HandleTypeDef *pdev, uint8_t ep_addr)
 {
@@ -845,4 +854,3 @@ static void SystemClockConfig_Resume(void)
 }
 /* USER CODE END 5 */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

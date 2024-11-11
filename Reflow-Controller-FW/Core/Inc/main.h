@@ -42,7 +42,7 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-
+extern SPI_HandleTypeDef hspi2;
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -58,6 +58,19 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define STATUS_B_Pin GPIO_PIN_0
+#define STATUS_B_GPIO_Port GPIOA
+#define STATUS_G_Pin GPIO_PIN_1
+#define STATUS_G_GPIO_Port GPIOA
+#define STATUS_R_Pin GPIO_PIN_2
+#define STATUS_R_GPIO_Port GPIOA
+#define SSR_CLOSED_Pin GPIO_PIN_3
+#define SSR_CLOSED_GPIO_Port GPIOA
+#define BUZZ_Pin GPIO_PIN_11
+#define BUZZ_GPIO_Port GPIOB
+#define CS_Pin GPIO_PIN_12
+#define CS_GPIO_Port GPIOB
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
@@ -67,5 +80,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
