@@ -28,9 +28,6 @@ static char usbBuffer[64];
 extern USBD_HandleTypeDef hUsbDeviceFS;
 
 int8_t onUsbReceive(uint8_t* Buf, const uint32_t *Len) {
-    USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
-    USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-
     memset(usbBuffer, '\0', 64);
     memcpy(usbBuffer, Buf, *Len);
     memset(Buf, '\0', *Len);

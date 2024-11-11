@@ -7,13 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2024 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -31,6 +30,7 @@
 /* Private macro -------------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+/* Private variables ---------------------------------------------------------*/
 
 /* USER CODE END PV */
 
@@ -62,7 +62,6 @@
   */
 
 /* USER CODE BEGIN PRIVATE_DEFINES */
-
 /* USER CODE END PRIVATE_DEFINES */
 
 /**
@@ -159,7 +158,7 @@ static int8_t CDC_Init_FS(void) {
     /* Set Application Buffers */
     USBD_CDC_SetTxBuffer(&hUsbDeviceFS, UserTxBufferFS, 0);
     USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
-    return USBD_OK;
+    return (USBD_OK);
     /* USER CODE END 3 */
 }
 
@@ -169,7 +168,7 @@ static int8_t CDC_Init_FS(void) {
   */
 static int8_t CDC_DeInit_FS(void) {
     /* USER CODE BEGIN 4 */
-    return USBD_OK;
+    return (USBD_OK);
     /* USER CODE END 4 */
 }
 
@@ -184,10 +183,15 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t *pbuf, uint16_t length) {
     /* USER CODE BEGIN 5 */
     switch (cmd) {
         case CDC_SEND_ENCAPSULATED_COMMAND:
+            break;
         case CDC_GET_ENCAPSULATED_RESPONSE:
+            break;
         case CDC_SET_COMM_FEATURE:
+            break;
         case CDC_GET_COMM_FEATURE:
+            break;
         case CDC_CLEAR_COMM_FEATURE:
+            break;
         /*******************************************************************************/
         /* Line Coding Structure                                                       */
         /*-----------------------------------------------------------------------------*/
@@ -206,9 +210,13 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t *pbuf, uint16_t length) {
         /* 6      | bDataBits  |   1   | Number Data bits (5, 6, 7, 8 or 16).          */
         /*******************************************************************************/
         case CDC_SET_LINE_CODING:
+            break;
         case CDC_GET_LINE_CODING:
+            break;
         case CDC_SET_CONTROL_LINE_STATE:
+            break;
         case CDC_SEND_BREAK:
+            break;
         default:
             break;
     }
@@ -234,6 +242,8 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t *pbuf, uint16_t length) {
   */
 static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len) {
     /* USER CODE BEGIN 6 */
+    USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
+    USBD_CDC_ReceivePacket(&hUsbDeviceFS);
     return onUsbReceive(Buf, Len);
     /* USER CODE END 6 */
 }
@@ -277,7 +287,9 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len) {
 static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum) {
     uint8_t result = USBD_OK;
     /* USER CODE BEGIN 13 */
-
+    UNUSED(Buf);
+    UNUSED(Len);
+    UNUSED(epnum);
     /* USER CODE END 13 */
     return result;
 }
